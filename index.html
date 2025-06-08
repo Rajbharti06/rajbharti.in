@@ -28,9 +28,9 @@
 
   <main>
     <section class="home" id="home" role="region" aria-label="Introduction">
-     <div class="circular-wrapper">
-  <img src="rajbharti.jpg" alt="Profile Picture" />
-</div>
+      <div class="circular-wrapper">
+        <img src="rajbharti.jpg" alt="Profile Picture" />
+      </div>
 
       </div>
 
@@ -93,10 +93,34 @@
 
     <section id="contact" class="contact-section" role="region" aria-labelledby="contact-title"
       style="padding: 5rem 9%; color: #e0e0e0; background:#111;">
-      <h2 id="contact-title">Contact Me</h2>
-      <p><a href="mailto:rajbharti006a@gmail.com"
-          style="color: #e0e0e0; text-decoration: underline;">rajbharti006a@gmail.com</a></p>
+      <h2 id="contact-title" style="font-size: 2rem; margin-bottom: 1.5rem;">Contact Me</h2>
+      <p style="margin-bottom: 2rem;">Scan to connect with me:</p>
+
+      <div style="display: flex; gap: 2rem; flex-wrap: wrap;">
+        <!-- LinkedIn -->
+        <div style="text-align: center;">
+          <img
+            src="https://api.qrserver.com/v1/create-qr-code/?data=https://www.linkedin.com/in/raj-bharti-b12ab2336/&amp;size=150x150"
+            alt="LinkedIn QR" style="border-radius: 0.5rem;" />
+          <p style="margin-top: 0.5rem;">LinkedIn</p>
+        </div>
+
+        <!-- GitHub -->
+        <div style="text-align: center;">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?data=https://github.com/Rajbharti06&amp;size=150x150"
+            alt="GitHub QR" style="border-radius: 0.5rem;" />
+          <p style="margin-top: 0.5rem;">GitHub</p>
+        </div>
+
+        <!-- X (Twitter) -->
+        <div style="text-align: center;">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?data=https://x.com/RajBharti06&amp;size=150x150"
+            alt="X QR" style="border-radius: 0.5rem;" />
+          <p style="margin-top: 0.5rem;">X (Twitter)</p>
+        </div>
+      </div>
     </section>
+
   </main>
 
   <script src="script.js" defer></script>
