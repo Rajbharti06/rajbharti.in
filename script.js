@@ -1,7 +1,7 @@
 const phrases = [
-  "Cybersecurity enthusiast",
-  "Web Developer",
-  "Future AI innovator"
+  "Engineer",
+  "Cybersecurity  Student",
+  "AI innovator"
 ];
 
 let typedText = document.querySelector('.typing-text span');
@@ -41,3 +41,4 @@ const nav = document.getElementById('navbar');
 menuIcon.addEventListener('click', () => {
   nav.classList.toggle('show');
 });
+
