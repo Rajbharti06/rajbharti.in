@@ -1,44 +1,57 @@
 const phrases = [
   "Engineer",
-  "Cybersecurity  Student",
+  "Cybersecurity Student",
   "AI innovator"
 ];
 
-let typedText = document.querySelector('.typing-text span');
+const typedTextSpan = document.querySelector('.typing-text span');
 let phraseIndex = 0;
 let letterIndex = 0;
 let isDeleting = false;
-let typingSpeed = 100;
+const typingSpeed = 100;
+const deletingSpeed = typingSpeed / 2;
+const delayAfterComplete = 1500;
 
 function type() {
   const currentPhrase = phrases[phraseIndex];
-  
   if (!isDeleting) {
-    typedText.textContent = currentPhrase.substring(0, letterIndex + 1);
+    typedTextSpan.textContent = currentPhrase.substring(0, letterIndex + 1);
     letterIndex++;
     if (letterIndex === currentPhrase.length) {
       isDeleting = true;
-      setTimeout(type, 1500);
+      setTimeout(type, delayAfterComplete);
       return;
     }
   } else {
-    typedText.textContent = currentPhrase.substring(0, letterIndex - 1);
+    typedTextSpan.textContent = currentPhrase.substring(0, letterIndex - 1);
     letterIndex--;
     if (letterIndex === 0) {
       isDeleting = false;
       phraseIndex = (phraseIndex + 1) % phrases.length;
     }
   }
-  setTimeout(type, isDeleting ? typingSpeed / 2 : typingSpeed);
+  setTimeout(type, isDeleting ? deletingSpeed : typingSpeed);
 }
 
-type();
+document.addEventListener('DOMContentLoaded', () => {
+  type();
 
-// Mobile menu toggle
-const menuIcon = document.getElementById('menu-icon');
-const nav = document.getElementById('navbar');
+  const menuIcon = document.getElementById('menu-icon');
+  const nav = document.getElementById('navbar');
 
-menuIcon.addEventListener('click', () => {
-  nav.classList.toggle('show');
+  menuIcon.addEventListener('click', () => {
+    const expanded = menuIcon.getAttribute('aria-expanded') === 'true' || false;
+    menuIcon.setAttribute('aria-expanded', !expanded);
+    nav.classList.toggle('show');
+  });
+
+  // Close menu when a link is clicked (mobile friendly)
+  nav.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      if (nav.classList.contains('show')) {
+        nav.classList.remove('show');
+        menuIcon.setAttribute('aria-expanded', false);
+      }
+    });
+  });
 });
-
