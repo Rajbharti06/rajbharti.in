@@ -1,5 +1,5 @@
 const phrases = [
-  "Engineer",
+  "Engineering Student",
   "Cybersecurity Student",
   "AI innovator"
 ];
@@ -55,3 +55,4 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+
