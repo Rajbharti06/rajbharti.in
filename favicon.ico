@@ -1,0 +1,1 @@
+(Favicon generation is not supported in this environment. Please use an online favicon generator to create a favicon.ico with a black background and white 'RB' initials, then place it in your project root. Update the <head> in index.html to use <link rel="icon" type="image/x-icon" href="favicon.ico" />.)
