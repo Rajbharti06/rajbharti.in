@@ -1,18 +1,18 @@
 [
   {
-    "title": "Cybersecurity Certificate",
-    "issuer": "LinkedIn",
-    "date": "2025-01-01",
+    "title": "GitHub Basics Certificate",
+    "issuer": "SimpleLearn  | SkillUp ",
+    "date": "12th October, 2025",
     "image": "assets/9150864_95069521760247731314.png",
-    "badges": ["Completion", "Cybersecurity"],
+    "badges": ["Completion", "GitHub Basics"],
     "verify_url": "https://www.linkedin.com/in/raj-bharti-b12ab2336/"
   },
   {
-    "title": "AI/ML Certificate",
+    "title": "Introduction to Cybersecurity Certificate",
     "issuer": "LinkedIn",
-    "date": "2025-10-19",
+    "date": "30 April, 2025",
     "image": "assets/Screenshot 2025-10-19 001407.png",
-    "badges": ["Completion", "AI/ML"],
+    "badges": ["Completion", "Introduction to Cybersecurity"],
     "verify_url": "https://www.linkedin.com/in/raj-bharti-b12ab2336/"
   }
 ]
