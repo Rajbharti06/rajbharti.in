@@ -390,6 +390,7 @@ html {
 
 .projects-section .project {
   background: var(--background-darker);
+  border: 1px solid rgba(255, 77, 77, 0.25);
   border-radius: 0.5rem;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -786,6 +787,15 @@ body > *:not(.site-bg) { position: relative; z-index: 1; }
   font-weight: 700;
 }
 
+/* Certifications grid centering */
+.certifications-section .cert-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  max-width: 1100px;
+  margin: 0 auto; /* center grid within section */
+}
+
 .cert-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -866,6 +876,7 @@ body > *:not(.site-bg) { position: relative; z-index: 1; }
 
 .projects-section .project {
   background: var(--background-darker);
+  border: 1px solid rgba(255, 77, 77, 0.25);
   border-radius: 0.5rem;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);

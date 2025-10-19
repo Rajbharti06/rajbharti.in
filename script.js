@@ -14,7 +14,9 @@
       })
       .then(repos => {
         if (!Array.isArray(repos)) throw new Error('Unexpected response');
-        const filtered = repos.filter(r => !r.archived);
+        const exclude = new Set(['Rajbharti06', 'skills-introduction-to-github']);
+        const filtered = repos
+          .filter(r => !r.archived && !exclude.has(r.name));
         filtered.sort((a, b) => new Date(b.pushed_at) - new Date(a.pushed_at));
 
         const fragment = document.createDocumentFragment();
