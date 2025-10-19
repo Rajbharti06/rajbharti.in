@@ -1,0 +1,18 @@
+[
+  {
+    "title": "Cybersecurity Certificate",
+    "issuer": "LinkedIn",
+    "date": "2025-01-01",
+    "image": "assets/9150864_95069521760247731314.png",
+    "badges": ["Completion", "Cybersecurity"],
+    "verify_url": "https://www.linkedin.com/in/raj-bharti-b12ab2336/"
+  },
+  {
+    "title": "AI/ML Certificate",
+    "issuer": "LinkedIn",
+    "date": "2025-10-19",
+    "image": "assets/Screenshot 2025-10-19 001407.png",
+    "badges": ["Completion", "AI/ML"],
+    "verify_url": "https://www.linkedin.com/in/raj-bharti-b12ab2336/"
+  }
+]
