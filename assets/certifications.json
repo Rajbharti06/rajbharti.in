@@ -1,0 +1,18 @@
+[
+  {
+    "title": "GitHub Basics Certificate",
+    "issuer": "SimpleLearn  | SkillUp ",
+    "date": "12th October, 2025",
+    "image": "assets/9150864_95069521760247731314.png",
+    "badges": ["Completion", "GitHub Basics"],
+    "verify_url": "https://www.linkedin.com/in/raj-bharti-b12ab2336/"
+  },
+  {
+    "title": "Introduction to Cybersecurity Certificate",
+    "issuer": "Cisco Networking Academy",
+    "date": "30 April, 2025",
+    "image": "assets/Screenshot 2025-10-19 001407.png",
+    "badges": ["Completion", "Introduction to Cybersecurity"],
+    "verify_url": "https://www.linkedin.com/in/raj-bharti-b12ab2336/"
+  }
+]
