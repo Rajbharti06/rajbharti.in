@@ -13,6 +13,7 @@ body {
   background: radial-gradient(circle at 20% 20%, var(--paper) 0%, var(--paper-2) 60%);
   color: var(--ink);
   font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  line-height: 1.6;
 }
 .cv-container {
   max-width: 1000px;
@@ -31,7 +32,8 @@ body {
 .cv-contact { display: flex; flex-wrap: wrap; gap: 0.8rem 1.2rem; font-size: 0.98rem; }
 .cv-contact a { color: var(--ink); text-decoration: none; border-bottom: 1px solid rgba(0,0,0,0.18); }
 .cv-contact a:hover { color: var(--accent); border-color: var(--accent); }
-.print-btn { align-self: center; background: var(--accent); color: #1a1a1a; border: none; padding: 0.6rem 1rem; border-radius: 10px; font-weight: 600; cursor: pointer; box-shadow: 0 4px 12px rgba(196,154,108,0.35); }
+.download-group { align-self: end; }
+.print-btn { align-self: center; background: var(--accent); color: #1a1a1a; border: none; padding: 0.55rem 0.9rem; border-radius: 10px; font-weight: 600; cursor: pointer; box-shadow: 0 4px 12px rgba(196,154,108,0.35); }
 .print-btn:hover { background: #d6b284; }
 
 .cv-section { padding: 1.4rem 0; border-bottom: 1px solid var(--line); }
@@ -39,6 +41,10 @@ body {
 .cv-section h2 { font-family: 'Merriweather', Georgia, serif; font-size: 1.4rem; margin: 0 0 0.8rem; color: var(--accent); letter-spacing: 0.3px; }
 .cv-list { list-style: none; margin: 0; padding: 0; }
 .cv-list li { margin: 0 0 0.8rem; }
+.cv-summary { margin: 0 0 0.6rem; color: var(--sub); }
+.cv-bullets { margin: 0.3rem 0 0; padding-left: 1.15rem; }
+.cv-bullets li { margin: 0.25rem 0; }
+.cv-meta { color: var(--sub); font-size: 0.95rem; }
 .cv-projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; }
 .cv-card { border: 1px solid var(--line); border-radius: 12px; padding: 1rem; background: #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.04); }
 .cv-card h3 { margin: 0 0 0.35rem; font-size: 1.1rem; }
@@ -57,9 +63,11 @@ body {
 
 @media print {
   body { background: #fff; }
-  .cv-container { box-shadow: none; border: none; margin: 0; padding: 0.8in; }
+  .cv-container { box-shadow: none; border: none; margin: 0; padding: 0.7in; }
   .print-btn { display: none; }
   .cv-list.two-col { columns: 2; }
+  a { color: #000; text-decoration: none; }
+  .cv-section { padding: 1rem 0; }
 }
 
 /* Print page setup and color fidelity */
