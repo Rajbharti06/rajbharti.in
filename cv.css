@@ -74,8 +74,4 @@ body {
   }
 }
 
-/* Download group styles */
-.download-group { display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; }
-.download-link { text-decoration: none; display: inline-block; }
-.download-link.print-btn { background: var(--accent); color: #1a1a1a; }
-.download-link.print-btn:hover { background: #d6b284; }
+/* No specific styling needed for .download-group or .download-link beyond what's inherited or default for a button */
