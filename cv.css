@@ -61,3 +61,21 @@ body {
   .print-btn { display: none; }
   .cv-list.two-col { columns: 2; }
 }
+
+/* Print page setup and color fidelity */
+@page {
+  size: A4;
+  margin: 16mm;
+}
+@media print {
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
+
+/* Download group styles */
+.download-group { display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; }
+.download-link { text-decoration: none; display: inline-block; }
+.download-link.print-btn { background: var(--accent); color: #1a1a1a; }
+.download-link.print-btn:hover { background: #d6b284; }

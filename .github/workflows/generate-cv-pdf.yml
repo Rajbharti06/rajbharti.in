@@ -1,0 +1,39 @@
+name: Generate CV PDFs
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'cv.html'
+      - 'cv.css'
+
+permissions:
+  contents: write
+
+jobs:
+  build-pdf:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: |
+          npm init -y
+          npm install puppeteer pdf-lib
+
+      - name: Generate PDFs from cv.html
+        run: node scripts/generate-cv-pdf.js
+
+      - name: Commit and push PDFs
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add cv-standard.pdf cv-high.pdf cv-print.pdf cv-landscape.pdf || true
+          git commit -m "chore: generate CV PDFs" || echo "No changes to commit"
+          git push
