@@ -57,12 +57,18 @@
   const certGrid = document.querySelector('#certifications .cert-grid');
   if (certGrid) {
     certGrid.innerHTML = '<div class="loading">Loading certifications...</div>';
-    fetch('assets/certifications.json')
+    
+    // Debug: Log the fetch attempt
+    console.log('Attempting to fetch certifications.json');
+    
+    fetch('./assets/certifications.json')
       .then(resp => {
+        console.log('Certification fetch response:', resp.status);
         if (!resp.ok) throw new Error('Missing certifications.json');
         return resp.json();
       })
       .then(items => {
+        console.log('Certifications loaded:', items);
         if (!Array.isArray(items)) throw new Error('Invalid certifications.json');
         const frag = document.createDocumentFragment();
         items.forEach(item => {
@@ -86,7 +92,7 @@
               <p class="cert-meta">${escapeHtml(issuer)} ${date ? '• ' + escapeHtml(date) : ''}</p>
               <div class="cert-badges">${badgeHtml}</div>
               <div class="cert-actions">
-                ${(pdf || imgSrc || verify) ? `<a href="${escapeAttr(pdf || imgSrc || verify)}" class="btn" target="_blank" rel="noopener noreferrer nofollow" referrerpolicy="no-referrer">View Certification</a>` : ''}
+                ${(verify) ? `<a href="${escapeAttr(verify)}" class="btn" target="_blank" rel="noopener noreferrer nofollow" referrerpolicy="no-referrer">Verify Certification</a>` : ''}
               </div>
             </div>
           `;
@@ -97,7 +103,7 @@
       })
       .catch(err => {
         console.error('Failed to load certifications:', err);
-        certGrid.innerHTML = '<p class="error">Add assets/certifications.json to show your certifications.</p>';
+        certGrid.innerHTML = '<p class="error">Failed to load certifications. Please check the console for details.</p>';
       });
   }
 
