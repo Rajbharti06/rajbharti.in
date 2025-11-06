@@ -1,6 +1,8 @@
 /* Blog shared styles */
 .blog-post { padding: 4rem 9%; max-width: 900px; margin: 0 auto; }
 .blog-post h1 { color: var(--primary-color); margin-bottom: 1rem; }
+.blog-post header { position: static; display: block; background: transparent; padding: 0; box-shadow: none; backdrop-filter: none; }
+.blog-post header .meta { display: block; margin-top: 0.5rem; }
 .blog-post .meta { color: var(--text-lighter); margin-bottom: 2rem; }
 .blog-post .content p { line-height: 1.8; margin: 1rem 0; }
 .blog-post .content h2 { margin-top: 1.2rem; color: var(--text-light); }
