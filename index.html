@@ -91,6 +91,12 @@
         </div>
       </div>
     </section>
+    <section id="blogs" class="blogs-section reveal" role="region" aria-labelledby="blogs-title">
+      <h2 id="blogs-title">Blogs</h2>
+      <div class="blog-list" role="list">
+        <div class="loading">Loading blogs...</div>
+      </div>
+    </section>
     <section id="certifications" class="certifications-section reveal" role="region" aria-labelledby="certifications-title">
       <h2 id="certifications-title">Certifications</h2>
       <div class="cert-grid" role="list"></div>
@@ -102,7 +108,10 @@
         <input type="text" name="name" placeholder="Your Name" required aria-label="Your Name">
         <input type="email" name="email" placeholder="Your Email" required aria-label="Your Email">
         <textarea name="message" placeholder="Your Message" required aria-label="Your Message"></textarea>
+        <input type="hidden" name="subject" id="subject-field" value="Portfolio Message">
+        <input type="hidden" name="request" id="request-type" value="General">
         <button type="submit" class="btn" aria-label="Send Message">Send Message</button>
+        <button type="button" class="btn secondary" id="request-cv-btn" aria-label="Request CV">Request CV</button>
       </form>
       <!-- Contact links removed -->
     </section>

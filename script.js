@@ -53,6 +53,68 @@
       });
   }
 
+  // Render Blogs from /blog/index.json
+  const blogListEl = document.querySelector('.blogs-section .blog-list');
+  if (blogListEl) {
+    blogListEl.innerHTML = '<div class="loading">Loading blogs...</div>';
+    fetch('./blog/index.json')
+      .then(resp => {
+        if (!resp.ok) throw new Error('Missing blog/index.json');
+        return resp.json();
+      })
+      .then(posts => {
+        if (!Array.isArray(posts)) throw new Error('Invalid blog index');
+        // sort by date desc if provided
+        posts.sort((a,b) => new Date(b.date || 0) - new Date(a.date || 0));
+        const frag = document.createDocumentFragment();
+        posts.forEach(p => {
+          const article = document.createElement('article');
+          article.className = 'blog-card';
+          const title = p.title || 'Untitled';
+          const date = p.date ? new Date(p.date).toLocaleDateString() : '';
+          const excerpt = p.excerpt || '';
+          const slug = p.slug || '';
+          const href = p.url ? p.url : (slug ? `blog/${slug}.html` : '#');
+          article.innerHTML = `
+            <h3 class="blog-title">${escapeHtml(title)}</h3>
+            <p class="blog-meta">${date ? escapeHtml(date) : ''}</p>
+            <p class="blog-excerpt">${escapeHtml(excerpt)}</p>
+            <div class="blog-actions">
+              <a href="${escapeAttr(href)}" class="btn secondary" role="button">Read More</a>
+            </div>
+          `;
+          frag.appendChild(article);
+        });
+        blogListEl.innerHTML = '';
+        blogListEl.appendChild(frag);
+        if (posts.length === 0) blogListEl.innerHTML = '<p>No blogs yet.</p>';
+      })
+      .catch(err => {
+        console.error('Failed to load blogs:', err);
+        blogListEl.innerHTML = '<p class="error">Failed to load blogs. Create blog/index.json.</p>';
+      });
+  }
+
+  // Request CV button behavior
+  const requestCvBtn = document.getElementById('request-cv-btn');
+  if (requestCvBtn) {
+    const contactForm = requestCvBtn.closest('form');
+    const subjectField = document.getElementById('subject-field');
+    const requestTypeField = document.getElementById('request-type');
+    const messageField = contactForm ? contactForm.querySelector('textarea[name="message"]') : null;
+    requestCvBtn.addEventListener('click', () => {
+      if (subjectField) subjectField.value = 'CV Request from Portfolio';
+      if (requestTypeField) requestTypeField.value = 'CV';
+      if (messageField) {
+        const preset = 'Hi Raj, I would like to request your CV.';
+        if (!messageField.value || messageField.value.trim().length < 5) {
+          messageField.value = preset;
+        }
+        messageField.focus();
+      }
+    });
+  }
+
   // Render Certifications from JSON in assets
   const certGrid = document.querySelector('#certifications .cert-grid');
   if (certGrid) {
@@ -82,6 +144,7 @@
           const verify = item.verify_url || '';
           const badges = Array.isArray(item.badges) ? item.badges : [];
           const badgeHtml = badges.map(b => `<span class="badge-chip">${escapeHtml(b)}</span>`).join('');
+          const viewHref = imgSrc || pdf || verify || '';
 
           card.innerHTML = `
             <div class="cert-image">
@@ -92,7 +155,7 @@
               <p class="cert-meta">${escapeHtml(issuer)} ${date ? '• ' + escapeHtml(date) : ''}</p>
               <div class="cert-badges">${badgeHtml}</div>
               <div class="cert-actions">
-                ${(verify) ? `<a href="${escapeAttr(verify)}" class="btn" target="_blank" rel="noopener noreferrer nofollow" referrerpolicy="no-referrer">Verify Certification</a>` : ''}
+                ${viewHref ? `<a href="${escapeAttr(viewHref)}" class="btn" target="_blank" rel="noopener noreferrer nofollow" referrerpolicy="no-referrer">View</a>` : ''}
               </div>
             </div>
           `;

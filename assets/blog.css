@@ -1,0 +1,33 @@
+/* Blog shared styles */
+.blog-post { padding: 4rem 9%; max-width: 900px; margin: 0 auto; }
+.blog-post h1 { color: var(--primary-color); margin-bottom: 1rem; }
+.blog-post .meta { color: var(--text-lighter); margin-bottom: 2rem; }
+.blog-post .content p { line-height: 1.8; margin: 1rem 0; }
+.blog-post .content h2 { margin-top: 1.2rem; color: var(--text-light); }
+.blog-post .back-link { display: inline-block; margin-top: 2rem; }
+.blog-post .buttons { display:flex; flex-wrap:wrap; gap:0.5rem; margin:1rem 0 1.25rem; }
+.blog-post .btn { text-decoration:none; }
+
+/* Ensure button text remains dark for contrast on gold background */
+.blog-post a.btn,
+.blog-post .btn {
+  color: #111; /* high contrast over gold */
+}
+.blog-post a.btn:visited,
+.blog-post a.btn:hover,
+.blog-post a.btn:focus {
+  color: #111;
+}
+
+/* Lightbox/blockquote adjustments for dark theme */
+.blog-post blockquote { border-left:4px solid rgba(212,175,55,0.25); padding-left:12px; color: var(--text-light); background: rgba(255,255,255,0.03); margin:12px 0; border-radius:6px; }
+
+/* Link styling inside posts */
+.blog-post a { color: var(--primary-color); }
+.blog-post a:hover, .blog-post a:focus { color: var(--primary-color-light); outline: none; }
+
+/* Lists */
+.blog-post ul, .blog-post ol { padding-left: 1.25rem; }
+
+/* Footer note */
+.blog-post footer { margin-top: 2rem; font-size: 0.95rem; color: var(--text-lighter); }

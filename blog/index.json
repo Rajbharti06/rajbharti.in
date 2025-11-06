@@ -1,0 +1,41 @@
+[
+  {
+    "title": "Hello World: Why I Started Blogging",
+    "slug": "hello-world",
+    "date": "2025-11-06",
+    "excerpt": "A short note on why I’m documenting my journey in AI and cybersecurity, plus what to expect in upcoming posts.",
+    "tags": ["intro", "ai", "cybersecurity"]
+  },
+    
+  {
+    "title": "Why I Started Cybersecurity",
+    "slug": "why-i-started-cybersecurity",
+    "date": "2025-11-15",
+    "excerpt": "A short note on why I started cybersecurity, and what I plan to cover in my learning journey.",
+    "url": "blog/Cybersecurity.html",
+    "tags": ["intro", "cybersecurity"]
+  }
+  ,
+  {
+    "title": "Why I Started Learning AI",
+    "slug": "why-i-started-learning-ai",
+    "date": "2025-11-21",
+    "excerpt": "From cybersecurity curiosity to building My Mitra and IntervAI — how I taught myself AI using ChatGPT, Perplexity, and hands-on projects.",
+    "url": "blog/ai.html",
+    "tags": ["ai", "learning"]
+  },
+  {
+    "title": "Embracing the Art of Programming",
+    "date": "2025-11-28",
+    "excerpt": "Exploring the creative and logical symphony of programming, from foundational principles to advanced problem-solving.",
+    "url": "blog/Programming.html",
+    "tags": ["programming", "tech"]
+  },
+  {
+    "title": "The Dawn of Intelligent Machines: A Journey into Robotics",
+    "date": "2025-12-05",
+    "excerpt": "From industrial automation to autonomous systems, this post delves into the fascinating evolution and future of robotics.",
+    "url": "blog/Robotics.html",
+    "tags": ["robotics", "ai", "engineering"]
+  }
+]
