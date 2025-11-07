@@ -38,4 +38,12 @@
     "url": "blog/Robotics.html",
     "tags": ["robotics", "ai", "engineering"]
   }
+  ,
+  {
+    "title": "My NCSC Journey — A Project That Shaped My Vision",
+    "date": "2025-11-07",
+    "excerpt": "Leading an NCSC 2023 project on Education and Awareness — a personal story of leadership, resilience, and the power of environmental education.",
+    "url": "blog/Social welfare.html",
+    "tags": ["NCSC", "environment", "leadership", "sustainability", "education"]
+  }
 ]
