@@ -14,5 +14,13 @@
     "image": "assets/Screenshot 2025-10-19 001407.png",
     "badges": ["Completion", "Introduction to Cybersecurity"],
     "verify_url": "https://www.linkedin.com/in/raj-bharti-b12ab2336/"
+  },
+  {
+    "title": "Pre Security Learning Path",
+    "issuer": "Try Hack Me",
+    "date": "9th November 2025",
+    "image": "assets/Screenshot 2025-11-09 101058.png",
+    "badges": ["Completion", "Pre Security"],
+    "verify_url": "https://tryhackme.com/c/THM-UKEAJM2IRL"
   }
 ]
