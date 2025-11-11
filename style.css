@@ -840,7 +840,7 @@ footer {
 }
 body > *:not(.site-bg) { position: relative; z-index: 1; }
 
-.certifications-section, .resume-section {
+.certifications-section {
   padding: 5rem 9%;
   background-color: var(--background-darker);
   border-radius: 10px;
@@ -848,7 +848,7 @@ body > *:not(.site-bg) { position: relative; z-index: 1; }
   box-shadow: 0 0 25px var(--shadow-color);
 }
 
-.certifications-section h2, .resume-section h2 {
+.certifications-section h2 {
   font-size: 2.2rem;
   color: var(--primary-color);
   margin-bottom: 1.5rem;
@@ -927,17 +927,7 @@ body > *:not(.site-bg) { position: relative; z-index: 1; }
   border: 1px solid rgba(255, 77, 77, 0.25);
 }
 .cert-actions { display: flex; gap: 0.5rem; }
-.resume-inline object {
-  width: 100%;
-  height: 600px;
-  border: 1px solid rgba(255, 77, 77, 0.3);
-  border-radius: 8px;
-  box-shadow: 0 0 10px var(--shadow-color);
-}
-
-.resume-fallback {
-  color: #bbb;
-}
+/* removed CV/resume-specific styles */
 
 .projects-section .loading {
   color: #bbb;

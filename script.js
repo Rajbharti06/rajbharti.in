@@ -95,25 +95,7 @@
       });
   }
 
-  // Request CV button behavior
-  const requestCvBtn = document.getElementById('request-cv-btn');
-  if (requestCvBtn) {
-    const contactForm = requestCvBtn.closest('form');
-    const subjectField = document.getElementById('subject-field');
-    const requestTypeField = document.getElementById('request-type');
-    const messageField = contactForm ? contactForm.querySelector('textarea[name="message"]') : null;
-    requestCvBtn.addEventListener('click', () => {
-      if (subjectField) subjectField.value = 'CV Request from Portfolio';
-      if (requestTypeField) requestTypeField.value = 'CV';
-      if (messageField) {
-        const preset = 'Hi Raj, I would like to request your CV.';
-        if (!messageField.value || messageField.value.trim().length < 5) {
-          messageField.value = preset;
-        }
-        messageField.focus();
-      }
-    });
-  }
+  // (removed) CV-related request button logic
 
   // Render Certifications from JSON in assets
   const certGrid = document.querySelector('#certifications .cert-grid');
