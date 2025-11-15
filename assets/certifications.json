@@ -22,5 +22,26 @@
     "image": "assets/Screenshot 2025-11-09 101058.png",
     "badges": ["Completion", "Pre Security"],
     "verify_url": "https://tryhackme.com/c/THM-UKEAJM2IRL"
+  },
+  {
+    "title": "Collaborate Effectively for Professional Success",
+    "issuer": "IBM",
+    "date": "14 November, 2025",
+    "image": "assets/Screenshot 2025-11-15 020524.png",
+    "badges": []
+  },
+  {
+    "title": "Delivering Quality Work with Agility",
+    "issuer": "IBM",
+    "date": "14 November, 2025",
+    "image": "assets/Screenshot 2025-11-15 020536.png",
+    "badges": []
+  },
+  {
+    "title": "Present with Purpose: Create/Deliver Effective Presentations",
+    "issuer": "IBM",
+    "date": "15 November, 2025",
+    "image": "assets/Screenshot 2025-11-15 152550.png",
+    "badges": []
   }
 ]
