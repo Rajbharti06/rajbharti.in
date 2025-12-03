@@ -64,8 +64,13 @@
       })
       .then(posts => {
         if (!Array.isArray(posts)) throw new Error('Invalid blog index');
-        // sort by date desc if provided
-        posts.sort((a,b) => new Date(b.date || 0) - new Date(a.date || 0));
+        // sort by explicit order if present, otherwise by date desc
+        posts.sort((a, b) => {
+          const ao = (typeof a.order === 'number') ? a.order : Infinity;
+          const bo = (typeof b.order === 'number') ? b.order : Infinity;
+          if (ao !== bo) return ao - bo;
+          return new Date(b.date || 0) - new Date(a.date || 0);
+        });
         const frag = document.createDocumentFragment();
         posts.forEach(p => {
           const article = document.createElement('article');
