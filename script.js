@@ -139,6 +139,7 @@
       .then(items => {
         console.log('Certifications loaded:', items);
         if (!Array.isArray(items)) throw new Error('Invalid certifications.json');
+        items.sort((a,b) => parseCertDate(b.date) - parseCertDate(a.date));
         const frag = document.createDocumentFragment();
         items.forEach(item => {
           const card = document.createElement('article');
@@ -190,6 +191,21 @@
   }
   function normalizeName(str) {
     return String(str).toLowerCase().replace(/[^a-z0-9]/g, '');
+  }
+  function parseCertDate(str) {
+    if (!str) return 0;
+    const s = String(str).trim();
+    const m = s.match(/(\d{1,2})(?:st|nd|rd|th)?\s+([A-Za-z]+),?\s*(\d{4})/);
+    if (m) {
+      const day = parseInt(m[1], 10) || 1;
+      const monName = m[2].toLowerCase();
+      const year = parseInt(m[3], 10) || 0;
+      const months = { january:0,february:1,march:2,april:3,may:4,june:5,july:6,august:7,september:8,october:9,november:10,december:11 };
+      const mon = months[monName];
+      if (mon !== undefined) return new Date(year, mon, day).getTime();
+    }
+    const t = Date.parse(s.replace(/(\d{1,2})(st|nd|rd|th)/, '$1'));
+    return isNaN(t) ? 0 : t;
   }
   // Reveal on scroll animations
   const reveals = document.querySelectorAll('.reveal');
