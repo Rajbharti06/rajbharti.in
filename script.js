@@ -17,7 +17,27 @@
         const exclude = new Set(['Rajbharti06', 'skills-introduction-to-github']);
         const filtered = repos
           .filter(r => !r.archived && !exclude.has(r.name));
-        filtered.sort((a, b) => new Date(b.pushed_at) - new Date(a.pushed_at));
+
+        const projectPriority = [
+          'rajbharti.in',
+          'mymitra',
+          'intervai',
+          'jarviscoder',
+          'apoclypsgpt',
+          'apocalypsegpt',
+          'appoclypsegpt'
+        ];
+        function priorityIndex(repo) {
+          const n = normalizeName(repo.name || '');
+          const idx = projectPriority.indexOf(n);
+          return idx === -1 ? Number.POSITIVE_INFINITY : idx;
+        }
+        filtered.sort((a, b) => {
+          const ai = priorityIndex(a);
+          const bi = priorityIndex(b);
+          if (ai !== bi) return ai - bi;
+          return new Date(b.pushed_at) - new Date(a.pushed_at);
+        });
 
         const fragment = document.createDocumentFragment();
         filtered.forEach(repo => {
@@ -167,6 +187,9 @@
   }
   function escapeAttr(str) {
     return String(str).replace(/"/g, '&quot;');
+  }
+  function normalizeName(str) {
+    return String(str).toLowerCase().replace(/[^a-z0-9]/g, '');
   }
   // Reveal on scroll animations
   const reveals = document.querySelectorAll('.reveal');
