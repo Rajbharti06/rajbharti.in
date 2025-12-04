@@ -126,6 +126,10 @@
   const certGrid = document.querySelector('#certifications .cert-grid');
   if (certGrid) {
     certGrid.innerHTML = '<div class="loading">Loading certifications...</div>';
+    const certSection = document.querySelector('#certifications');
+    let allCerts = [];
+    let sortDir = 'asc';
+    let searchQuery = '';
     
     // Debug: Log the fetch attempt
     console.log('Attempting to fetch certifications.json');
@@ -139,38 +143,9 @@
       .then(items => {
         console.log('Certifications loaded:', items);
         if (!Array.isArray(items)) throw new Error('Invalid certifications.json');
-        items.sort((a,b) => parseCertDate(b.date) - parseCertDate(a.date));
-        const frag = document.createDocumentFragment();
-        items.forEach(item => {
-          const card = document.createElement('article');
-          card.className = 'cert-card';
-          const imgSrc = item.image || '';
-          const title = item.title || 'Certification';
-          const issuer = item.issuer || '';
-          const date = item.date || '';
-          const pdf = item.pdf_url || '';
-          const verify = item.verify_url || '';
-          const badges = Array.isArray(item.badges) ? item.badges : [];
-          const badgeHtml = badges.map(b => `<span class="badge-chip">${escapeHtml(b)}</span>`).join('');
-          const viewHref = imgSrc || pdf || verify || '';
-
-          card.innerHTML = `
-            <div class="cert-image">
-              ${imgSrc ? `<a href="${escapeAttr(pdf || imgSrc || verify || imgSrc)}" target="_blank" rel="noopener noreferrer nofollow" referrerpolicy="no-referrer"><img src="${escapeAttr(imgSrc)}" alt="${escapeAttr(title)} certificate" loading="lazy"/></a>` : ''}
-            </div>
-            <div class="cert-body">
-              <h3 class="cert-title">${escapeHtml(title)}</h3>
-              <p class="cert-meta">${escapeHtml(issuer)} ${date ? '• ' + escapeHtml(date) : ''}</p>
-              <div class="cert-badges">${badgeHtml}</div>
-              <div class="cert-actions">
-                ${viewHref ? `<a href="${escapeAttr(viewHref)}" class="btn" target="_blank" rel="noopener noreferrer nofollow" referrerpolicy="no-referrer">View</a>` : ''}
-              </div>
-            </div>
-          `;
-          frag.appendChild(card);
-        });
-        certGrid.innerHTML = '';
-        certGrid.appendChild(frag);
+        allCerts = items.slice();
+        ensureToolbar(certSection);
+        renderCerts();
       })
       .catch(err => {
         console.error('Failed to load certifications:', err);
@@ -207,6 +182,111 @@
     const t = Date.parse(s.replace(/(\d{1,2})(st|nd|rd|th)/, '$1'));
     return isNaN(t) ? 0 : t;
   }
+  function parseMonthIndex(str) {
+    if (!str) return -1;
+    const s = String(str).toLowerCase();
+    const months = ['january','february','march','april','may','june','july','august','september','october','november','december'];
+    for (let i = 0; i < months.length; i++) {
+      if (s.includes(months[i])) return i;
+    }
+    const t = parseCertDate(str);
+    if (!t) return -1;
+    return new Date(t).getMonth();
+  }
+  function monthLabel(i) {
+    return ['January','February','March','April','May','June','July','August','September','October','November','December'][i] || '';
+  }
+  function ensureToolbar(section) {
+    if (!section) return;
+    let toolbar = section.querySelector('.cert-toolbar');
+    if (!toolbar) {
+      toolbar = document.createElement('div');
+      toolbar.className = 'cert-toolbar';
+      const search = document.createElement('input');
+      search.type = 'search';
+      search.placeholder = 'Search certificates';
+      search.addEventListener('input', () => { searchQuery = search.value.trim().toLowerCase(); renderCerts(); });
+      const sortSel = document.createElement('select');
+      sortSel.innerHTML = '<option value="asc">Date ↑</option><option value="desc">Date ↓</option>';
+      sortSel.addEventListener('change', () => { sortDir = sortSel.value; renderCerts(); });
+      toolbar.appendChild(search);
+      toolbar.appendChild(sortSel);
+      section.insertBefore(toolbar, certGrid);
+    }
+  }
+  function renderCerts() {
+    if (!Array.isArray(allCerts)) return;
+    const byMonth = Array.from({ length: 12 }, () => []);
+    allCerts.forEach(item => {
+      const mi = parseMonthIndex(item.date || '');
+      if (mi >= 0) byMonth[mi].push(item);
+    });
+    certGrid.innerHTML = '';
+    for (let mi = 0; mi < 12; mi++) {
+      const list = byMonth[mi]
+        .filter(it => filterMatch(it))
+        .sort((a, b) => {
+          const da = parseCertDate(a.date);
+          const db = parseCertDate(b.date);
+          return sortDir === 'asc' ? da - db : db - da;
+        });
+      if (list.length === 0) continue;
+      const monthEl = document.createElement('section');
+      monthEl.className = 'cert-month';
+      const header = document.createElement('div');
+      header.className = 'month-header';
+      header.innerHTML = `<span class="month-title">${monthLabel(mi)}</span><span class="month-count">${list.length}</span>`;
+      const group = document.createElement('div');
+      group.className = 'month-group';
+      list.forEach(item => group.appendChild(certCard(item)));
+      monthEl.appendChild(header);
+      monthEl.appendChild(group);
+      certGrid.appendChild(monthEl);
+    }
+    if (!certGrid.children.length) {
+      certGrid.innerHTML = '<p class="error">No certificates found.</p>';
+    }
+  }
+  function filterMatch(item) {
+    if (!searchQuery) return true;
+    const hay = [item.title, item.issuer, item.date]
+      .concat(Array.isArray(item.badges) ? item.badges : [])
+      .concat(item.status ? [item.status] : [])
+      .join(' ').toLowerCase();
+    return hay.includes(searchQuery);
+  }
+  function certCard(item) {
+    const card = document.createElement('article');
+    card.className = 'cert-card';
+    const imgSrc = item.image || '';
+    const title = item.title || 'Certification';
+    const issuer = item.issuer || '';
+    const date = item.date || '';
+    const pdf = item.pdf_url || '';
+    const verify = item.verify_url || '';
+    const badges = Array.isArray(item.badges) ? item.badges : [];
+    const badgeHtml = badges.map(b => `<span class="badge-chip">${escapeHtml(b)}</span>`).join('');
+    const viewHref = imgSrc || pdf || verify || '';
+    const status = (item.status || 'completed').toLowerCase();
+    const statusCls = status === 'pending' ? 'status-pending' : status === 'expired' ? 'status-expired' : 'status-completed';
+    const statusHtml = `<span class="status-badge ${statusCls}"><span class="dot"></span><span>${escapeHtml(capitalize(status))}</span></span>`;
+    card.innerHTML = `
+      <div class="cert-image">
+        ${imgSrc ? `<a href="${escapeAttr(pdf || imgSrc || verify || imgSrc)}" target="_blank" rel="noopener noreferrer nofollow" referrerpolicy="no-referrer"><img src="${escapeAttr(imgSrc)}" alt="${escapeAttr(title)} certificate" loading="lazy"/></a>` : ''}
+      </div>
+      <div class="cert-body">
+        <h3 class="cert-title">${escapeHtml(title)}</h3>
+        <p class="cert-meta">${escapeHtml(issuer)} ${date ? '• ' + escapeHtml(date) : ''}</p>
+        ${statusHtml}
+        <div class="cert-badges">${badgeHtml}</div>
+        <div class="cert-actions">
+          ${viewHref ? `<a href="${escapeAttr(viewHref)}" class="btn" target="_blank" rel="noopener noreferrer nofollow" referrerpolicy="no-referrer">View</a>` : ''}
+        </div>
+      </div>
+    `;
+    return card;
+  }
+  function capitalize(s) { return String(s).charAt(0).toUpperCase() + String(s).slice(1); }
   // Reveal on scroll animations
   const reveals = document.querySelectorAll('.reveal');
   if (reveals.length) {
