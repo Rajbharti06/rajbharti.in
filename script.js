@@ -134,23 +134,52 @@
     // Debug: Log the fetch attempt
     console.log('Attempting to fetch certifications.json');
     
-    fetch('./assets/certifications.json')
-      .then(resp => {
-        console.log('Certification fetch response:', resp.status);
-        if (!resp.ok) throw new Error('Missing certifications.json');
-        return resp.json();
-      })
-      .then(items => {
-        console.log('Certifications loaded:', items);
-        if (!Array.isArray(items)) throw new Error('Invalid certifications.json');
-        allCerts = items.slice();
-        ensureToolbar(certSection);
-        renderCerts();
-      })
-      .catch(err => {
-        console.error('Failed to load certifications:', err);
-        certGrid.innerHTML = '<p class="error">Failed to load certifications. Please check the console for details.</p>';
-      });
+    function loadCerts() {
+      const controller = new AbortController();
+      const timer = setTimeout(() => controller.abort(), 12000);
+      const url = './assets/certifications.json';
+      const isFile = (typeof location !== 'undefined' && location.protocol === 'file:');
+      console.log('Attempting to fetch certifications.json from', url, 'protocol =', location.protocol);
+      return fetch(url, { signal: controller.signal })
+        .then(resp => {
+          clearTimeout(timer);
+          console.log('Certification fetch response:', resp.status);
+          if (!resp.ok) throw new Error('Missing certifications.json (HTTP ' + resp.status + ')');
+          return resp.json();
+        })
+        .then(items => {
+          console.log('Certifications loaded:', items);
+          if (!Array.isArray(items)) throw new Error('Invalid certifications.json: expected an array');
+          const valid = items.filter(validateCertItem);
+          const skipped = items.length - valid.length;
+          if (skipped > 0) console.warn('Skipped', skipped, 'invalid certification entries');
+          allCerts = valid;
+          ensureToolbar(certSection);
+          renderCerts();
+        })
+        .catch(err => {
+          clearTimeout(timer);
+          console.error('Failed to load certifications:', err);
+          const hint = isFile
+            ? 'Open this site via a local server instead of file:// to allow fetching JSON.'
+            : 'Check that assets/certifications.json exists and is publicly accessible.';
+          certGrid.innerHTML = `
+            <div class="error">
+              <p>Failed to load certifications.</p>
+              <p>${escapeHtml(err.message || String(err))}</p>
+              <p>${escapeHtml(hint)}</p>
+              <div style="margin-top:0.75rem">
+                <button class="btn" id="retry-certs">Retry</button>
+              </div>
+            </div>`;
+          const retryBtn = document.getElementById('retry-certs');
+          if (retryBtn) retryBtn.addEventListener('click', () => {
+            certGrid.innerHTML = '<div class="loading">Loading certifications...</div>';
+            loadCerts();
+          });
+        });
+    }
+    loadCerts();
   }
 
   function escapeHtml(str) {
@@ -209,17 +238,22 @@
       const sortSel = document.createElement('select');
       sortSel.innerHTML = '<option value="asc">Date ↑</option><option value="desc">Date ↓</option>';
       sortSel.addEventListener('change', () => { sortDir = sortSel.value; renderCerts(); });
+      const statusSel = document.createElement('select');
+      statusSel.innerHTML = '<option value="">All Statuses</option><option value="completed">Completed</option><option value="pending">Pending</option><option value="expired">Expired</option>';
+      statusSel.addEventListener('change', () => { searchQuery = statusSel.value ? statusSel.value.toLowerCase() : ''; renderCerts(); });
       toolbar.appendChild(search);
       toolbar.appendChild(sortSel);
+      toolbar.appendChild(statusSel);
       section.insertBefore(toolbar, certGrid);
     }
   }
   function renderCerts() {
     if (!Array.isArray(allCerts)) return;
     const byMonth = Array.from({ length: 12 }, () => []);
+    const unspecified = [];
     allCerts.forEach(item => {
       const mi = parseMonthIndex(item.date || '');
-      if (mi >= 0) byMonth[mi].push(item);
+      if (mi >= 0) byMonth[mi].push(item); else unspecified.push(item);
     });
     certGrid.innerHTML = '';
     for (let mi = 0; mi < 12; mi++) {
@@ -242,6 +276,28 @@
       monthEl.appendChild(header);
       monthEl.appendChild(group);
       certGrid.appendChild(monthEl);
+    }
+    if (unspecified.length) {
+      const list = unspecified
+        .filter(it => filterMatch(it))
+        .sort((a, b) => {
+          const da = parseCertDate(a.date);
+          const db = parseCertDate(b.date);
+          return sortDir === 'asc' ? da - db : db - da;
+        });
+      if (list.length) {
+        const monthEl = document.createElement('section');
+        monthEl.className = 'cert-month';
+        const header = document.createElement('div');
+        header.className = 'month-header';
+        header.innerHTML = `<span class="month-title">Unspecified</span><span class="month-count">${list.length}</span>`;
+        const group = document.createElement('div');
+        group.className = 'month-group';
+        list.forEach(item => group.appendChild(certCard(item)));
+        monthEl.appendChild(header);
+        monthEl.appendChild(group);
+        certGrid.appendChild(monthEl);
+      }
     }
     if (!certGrid.children.length) {
       certGrid.innerHTML = '<p class="error">No certificates found.</p>';
@@ -285,6 +341,17 @@
       </div>
     `;
     return card;
+  }
+  function validateCertItem(item) {
+    if (!item || typeof item !== 'object') return false;
+    const title = item.title;
+    const issuer = item.issuer;
+    const date = item.date;
+    if (typeof title !== 'string' || typeof issuer !== 'string' || typeof date !== 'string') {
+      console.warn('Invalid cert item:', item);
+      return false;
+    }
+    return true;
   }
   function capitalize(s) { return String(s).charAt(0).toUpperCase() + String(s).slice(1); }
   // Reveal on scroll animations
