@@ -124,12 +124,14 @@
 
   // Render Certifications from JSON in assets
   const certGrid = document.querySelector('#certifications .cert-grid');
+  // shared state for certs (must be outside the if-block)
+  let allCerts = [];
+  let sortDir = 'asc';
+  let searchQuery = '';
+  let statusFilter = '';
   if (certGrid) {
     certGrid.innerHTML = '<div class="loading">Loading certifications...</div>';
     const certSection = document.querySelector('#certifications');
-    let allCerts = [];
-    let sortDir = 'asc';
-    let searchQuery = '';
     
     // Debug: Log the fetch attempt
     console.log('Attempting to fetch certifications.json');
@@ -240,7 +242,7 @@
       sortSel.addEventListener('change', () => { sortDir = sortSel.value; renderCerts(); });
       const statusSel = document.createElement('select');
       statusSel.innerHTML = '<option value="">All Statuses</option><option value="completed">Completed</option><option value="pending">Pending</option><option value="expired">Expired</option>';
-      statusSel.addEventListener('change', () => { searchQuery = statusSel.value ? statusSel.value.toLowerCase() : ''; renderCerts(); });
+      statusSel.addEventListener('change', () => { statusFilter = statusSel.value ? statusSel.value.toLowerCase() : ''; renderCerts(); });
       toolbar.appendChild(search);
       toolbar.appendChild(sortSel);
       toolbar.appendChild(statusSel);
@@ -304,12 +306,13 @@
     }
   }
   function filterMatch(item) {
-    if (!searchQuery) return true;
     const hay = [item.title, item.issuer, item.date]
       .concat(Array.isArray(item.badges) ? item.badges : [])
       .concat(item.status ? [item.status] : [])
       .join(' ').toLowerCase();
-    return hay.includes(searchQuery);
+    const matchesQuery = searchQuery ? hay.includes(searchQuery) : true;
+    const matchesStatus = statusFilter ? String(item.status || 'completed').toLowerCase() === statusFilter : true;
+    return matchesQuery && matchesStatus;
   }
   function certCard(item) {
     const card = document.createElement('article');
