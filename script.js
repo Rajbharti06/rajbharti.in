@@ -135,8 +135,29 @@
       .then(items => {
         console.log('Certifications loaded:', items);
         if (!Array.isArray(items)) throw new Error('Invalid certifications.json');
+        const priority = [
+          'Introduction to Cybersecurity Certificate',
+          'GitHub Basics Certificate',
+          'Pre Security Learning Path',
+          'Collaborate Effectively for Professional Success',
+          'Delivering Quality Work with Agility',
+          'Present with Purpose: Create/Deliver Effective Presentations',
+          'Solving Problems with Creative and Critical Thinking',
+          'Developing Interpersonal Skills',
+          'People and Soft Skills Assessment'
+        ].map(t => normalizeName(t));
+        const withIndex = items.map((it, i) => ({ it, i }));
+        withIndex.sort((a, b) => {
+          const ai = priority.indexOf(normalizeName(a.it.title || ''));
+          const bi = priority.indexOf(normalizeName(b.it.title || ''));
+          const ap = ai === -1 ? Number.POSITIVE_INFINITY : ai;
+          const bp = bi === -1 ? Number.POSITIVE_INFINITY : bi;
+          if (ap !== bp) return ap - bp;
+          return a.i - b.i;
+        });
+        const ordered = withIndex.map(x => x.it);
         const frag = document.createDocumentFragment();
-        items.forEach(item => {
+        ordered.forEach(item => {
           const card = document.createElement('article');
           card.className = 'cert-card';
           const imgSrc = item.image || '';
