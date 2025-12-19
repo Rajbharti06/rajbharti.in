@@ -18,7 +18,7 @@
   {
     "title": "Pre Security Learning Path",
     "issuer": "Try Hack Me",
-    "date": "9th November 2025",
+    "date": "9th November, 2025",
     "image": "assets/Screenshot 2025-11-09 101058.png",
     "badges": ["Completion", "Pre Security"],
     "verify_url": "https://tryhackme.com/c/THM-UKEAJM2IRL"
@@ -63,6 +63,13 @@
     "issuer": "IBM",
     "date": "17 November, 2025",
     "image": "assets/Screenshot 2025-11-18 235259.png",
+    "badges": []
+  },
+  {
+    "title": "Introduction to Psychology",
+    "issuer": "Yale University",
+    "date": "20 December, 2025",
+    "image": "assets/Screenshot 2025-12-20 002853.png",
     "badges": []
   }
 ]
