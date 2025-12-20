@@ -3,7 +3,7 @@
     "title": "GitHub Basics Certificate",
     "issuer": "SimpleLearn  | SkillUp ",
     "date": "12th October, 2025",
-    "image": "assets/9150864_95069521760247731314.png",
+    "image": "assets/github-basics.png",
     "badges": ["Completion", "GitHub Basics"],
     "verify_url": "https://www.linkedin.com/in/raj-bharti-b12ab2336/"
   },
@@ -11,7 +11,7 @@
     "title": "Introduction to Cybersecurity Certificate",
     "issuer": "Cisco Networking Academy",
     "date": "30 April, 2025",
-    "image": "assets/Screenshot 2025-10-19 001407.png",
+    "image": "assets/intro-cybersecurity.png",
     "badges": ["Completion", "Introduction to Cybersecurity"],
     "verify_url": "https://www.linkedin.com/in/raj-bharti-b12ab2336/"
   },
@@ -19,7 +19,7 @@
     "title": "Pre Security Learning Path",
     "issuer": "Try Hack Me",
     "date": "9th November, 2025",
-    "image": "assets/Screenshot 2025-11-09 101058.png",
+    "image": "assets/pre-security.png",
     "badges": ["Completion", "Pre Security"],
     "verify_url": "https://tryhackme.com/c/THM-UKEAJM2IRL"
   },
@@ -27,49 +27,50 @@
     "title": "Collaborate Effectively for Professional Success",
     "issuer": "IBM",
     "date": "14 November, 2025",
-    "image": "assets/Screenshot 2025-11-15 020524.png",
+    "image": "assets/collaborate-effectively.png",
     "badges": []
   },
   {
     "title": "Delivering Quality Work with Agility",
     "issuer": "IBM",
     "date": "14 November, 2025",
-    "image": "assets/Screenshot 2025-11-15 020536.png",
+    "image": "assets/quality-work-agility.png",
     "badges": []
   },
   {
     "title": "Present with Purpose: Create/Deliver Effective Presentations",
     "issuer": "IBM",
     "date": "15 November, 2025",
-    "image": "assets/Screenshot 2025-11-15 152550.png",
+    "image": "assets/present-purpose.png",
     "badges": []
   },
   {
     "title": "Solving Problems with Creative and Critical Thinking",
     "issuer": "IBM",
     "date": "17 November, 2025",
-    "image": "assets/Screenshot 2025-11-18 235204.png",
+    "image": "assets/solving-problems.png",
     "badges": []
   },
   {
     "title": "People and Soft Skills Assessment",
     "issuer": "IBM",
     "date": "18 November, 2025",
-    "image": "assets/Screenshot 2025-11-18 235236.png",
+    "image": "assets/soft-skills.png",
     "badges": []
   },
   {
     "title": "Developing Interpersonal Skills",
     "issuer": "IBM",
     "date": "17 November, 2025",
-    "image": "assets/Screenshot 2025-11-18 235259.png",
+    "image": "assets/interpersonal-skills.png",
     "badges": []
   },
   {
     "title": "Introduction to Psychology",
     "issuer": "Yale University",
     "date": "20 December, 2025",
-    "image": "assets/Screenshot 2025-12-20 002853.png",
-    "badges": []
+    "image": "assets/intro-psychology.png",
+    "badges": [],
+    "verify_url": ""
   }
 ]

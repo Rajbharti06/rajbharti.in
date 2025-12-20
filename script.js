@@ -171,7 +171,7 @@
           const viewHref = imgSrc || pdf || verify || '';
           card.innerHTML = `
             <div class="cert-image">
-              ${imgSrc ? `<a href="${escapeAttr(pdf || imgSrc || verify || imgSrc)}" target="_blank" rel="noopener noreferrer nofollow" referrerpolicy="no-referrer"><img src="${escapeAttr(imgSrc)}" alt="${escapeAttr(title)} certificate" loading="lazy"/></a>` : ''}
+              ${imgSrc ? `<a href="${escapeAttr(pdf || imgSrc || verify || imgSrc)}" target="_blank" rel="noopener noreferrer nofollow" referrerpolicy="no-referrer"><img src="${escapeAttr(imgSrc)}" alt="${escapeAttr(title)} certificate" loading="lazy" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'300\' height=\'200\' viewBox=\'0 0 300 200\'%3E%3Crect width=\'300\' height=\'200\' fill=\'%23f0f0f0\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' font-family=\'sans-serif\' font-size=\'16\' fill=\'%23888\'%3EImage Not Available%3C/text%3E%3C/svg%3E';"/></a>` : ''}
             </div>
             <div class="cert-body">
               <h3 class="cert-title">${escapeHtml(title)}</h3>
