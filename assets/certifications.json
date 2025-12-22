@@ -72,5 +72,13 @@
     "image": "assets/intro-psychology.png",
     "badges": [],
     "verify_url": ""
+  },
+  {
+    "title": "Computational Thinking for Problem Solving",
+    "issuer": "University of Pennsylvania",
+    "date": "22 December, 2025",
+    "image": "assets/computational-thinking.png",
+    "badges": [],
+    "verify_url": ""
   }
 ]
