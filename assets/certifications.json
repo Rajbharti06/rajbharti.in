@@ -80,5 +80,13 @@
     "image": "assets/computational-thinking.png",
     "badges": [],
     "verify_url": ""
+  },
+  {
+    "title": "Data Labeling Job Simulation",
+    "issuer": "Forage Academy",
+    "date": "29 December, 2025",
+    "image": "assets/data-labeling-job-simulation.png",
+    "badges": [],
+    "verify_url": ""
   }
 ]
