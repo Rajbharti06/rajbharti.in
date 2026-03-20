@@ -8,6 +8,7 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("rajbharti.jpg");
   eleventyConfig.addPassthroughCopy("projects");
   eleventyConfig.addPassthroughCopy("blog");
+  eleventyConfig.addPassthroughCopy("assets");
   eleventyConfig.addPassthroughCopy("uploads");
   eleventyConfig.addPassthroughCopy("admin");
 

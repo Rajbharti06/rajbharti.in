@@ -470,6 +470,70 @@ html {
   background: var(--primary-color-light);
 }
 
+/* Publications Section */
+.publications-section {
+  padding: 5rem 9%;
+  background: var(--background-darker);
+}
+
+.publications-section h2 {
+  font-size: 2.6rem;
+  color: var(--primary-color);
+  text-align: center;
+  margin-bottom: 3rem;
+  letter-spacing: 0.05em;
+  font-weight: 700;
+}
+
+.publications-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.publication-card {
+  background: var(--background-dark);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 12px;
+  padding: 2rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.publication-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px var(--shadow-color);
+  border-color: var(--primary-color);
+}
+
+.publication-title {
+  font-size: 1.6rem;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+  font-family: var(--font-family);
+}
+
+.publication-meta {
+  font-size: 0.95rem;
+  color: var(--text-lighter);
+  margin-bottom: 1rem;
+  font-style: italic;
+}
+
+.publication-abstract {
+  font-size: 1.05rem;
+  color: var(--text-light);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.publication-actions {
+  display: flex;
+  gap: 1rem;
+}
+
 /* Contact Section */
 .contact-section {
   padding: 5rem 9%;

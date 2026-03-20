@@ -193,6 +193,57 @@
       });
   }
 
+  // Render Publications from JSON in assets
+  const publicationsListEl = document.querySelector('.publications-section .publications-list');
+  if (publicationsListEl) {
+    publicationsListEl.innerHTML = '<div class="loading">Loading publications...</div>';
+    fetch('./assets/publications.json')
+      .then(resp => {
+        if (!resp.ok) throw new Error('Missing publications.json');
+        return resp.json();
+      })
+      .then(items => {
+        if (!Array.isArray(items)) throw new Error('Invalid publications.json');
+        
+        // Sort by date descending
+        items.sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0));
+
+        const frag = document.createDocumentFragment();
+        items.forEach(item => {
+          const card = document.createElement('article');
+          card.className = 'publication-card';
+          const title = item.title || 'Untitled Publication';
+          const authors = item.authors || 'Unknown Authors';
+          const publisher = item.publisher || '';
+          const date = item.date ? new Date(item.date).toLocaleDateString(undefined, { year: 'numeric', month: 'long' }) : '';
+          const abstract = item.abstract || '';
+          const downloadLink = item.downloadLink || '#';
+
+          card.innerHTML = `
+            <h3 class="publication-title">${escapeHtml(title)}</h3>
+            <p class="publication-meta">
+              ${escapeHtml(authors)}${publisher ? ' • ' + escapeHtml(publisher) : ''}${date ? ' • ' + escapeHtml(date) : ''}
+            </p>
+            <p class="publication-abstract">${escapeHtml(abstract)}</p>
+            <div class="publication-actions">
+              <a href="${escapeAttr(downloadLink)}" class="btn secondary" target="_blank" rel="noopener noreferrer">View on Zenodo</a>
+            </div>
+          `;
+          frag.appendChild(card);
+        });
+        
+        publicationsListEl.innerHTML = '';
+        publicationsListEl.appendChild(frag);
+        if (items.length === 0) {
+          publicationsListEl.innerHTML = '<p>No publications found.</p>';
+        }
+      })
+      .catch(err => {
+        console.error('Failed to load publications:', err);
+        publicationsListEl.innerHTML = '<p class="error">Failed to load publications. Please check the console for details.</p>';
+      });
+  }
+
   function escapeHtml(str) {
     return String(str)
       .replace(/&/g, '&amp;')

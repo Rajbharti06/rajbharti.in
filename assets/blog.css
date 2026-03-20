@@ -33,3 +33,21 @@
 
 /* Footer note */
 .blog-post footer { margin-top: 2rem; font-size: 0.95rem; color: var(--text-lighter); }
+
+/* Citation styling */
+.citation {
+  background: rgba(212, 175, 55, 0.05);
+  border-left: 4px solid var(--primary-color);
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  font-family: 'Merriweather', serif;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  border-radius: 0 8px 8px 0;
+  color: var(--text-light);
+}
+
+.citation a {
+  word-break: break-all;
+  text-decoration: underline;
+}
