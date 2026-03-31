@@ -218,13 +218,17 @@
           const date = item.date ? new Date(item.date).toLocaleDateString(undefined, { year: 'numeric', month: 'long' }) : '';
           const abstract = item.abstract || '';
           const downloadLink = item.downloadLink || '#';
+          const note = item.note || '';
 
           card.innerHTML = `
-            <h3 class="publication-title">${escapeHtml(title)}</h3>
+            <h3 class="publication-title">
+              <a href="${escapeAttr(downloadLink)}" target="_blank" rel="noopener noreferrer">${escapeHtml(title)}</a>
+            </h3>
             <p class="publication-meta">
               ${escapeHtml(authors)}${publisher ? ' • ' + escapeHtml(publisher) : ''}${date ? ' • ' + escapeHtml(date) : ''}
             </p>
             <p class="publication-abstract">${escapeHtml(abstract)}</p>
+            ${note ? `<p class="publication-note">${escapeHtml(note)}</p>` : ''}
             <div class="publication-actions">
               <a href="${escapeAttr(downloadLink)}" class="btn secondary" target="_blank" rel="noopener noreferrer">View on Zenodo</a>
             </div>

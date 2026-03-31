@@ -1,9 +1,18 @@
 [
   {
+    "title": "Case Study: Harvard University Data Breach and Identity-Centric Threats in Modern Cybersecurity",
+    "authors": "Raj Bharti",
+    "publisher": "Zenodo",
+    "date": "2026-03-31",
+    "abstract": "Research analyzing the 2025–2026 Harvard University data breach, focusing on identity-centric attack vectors such as vishing, adversary-in-the-middle (AiTM), and MFA bypass techniques. Introduces the Identity Exploitation Model (IEM) and applies MITRE ATT&CK and STRIDE frameworks to evaluate systemic weaknesses in modern authentication systems. Published as open-access preprint.",
+    "downloadLink": "https://zenodo.org/records/19344102",
+    "note": "Note: This work is part of an ongoing long-term research project on identity-based cyberattacks. These publications are early case studies released to deepen understanding and refine the broader research direction."
+  },
+  {
     "title": "Case Study: Princeton University Data Breach and Its Cybersecurity Implications in Higher Education",
     "authors": "Raj Bharti",
     "publisher": "Zenodo",
-    "date": "2026-03-01",
+    "date": "2026-03-20",
     "abstract": "Research analyzing the November 2025 Princeton University vishing breach using STRIDE and MITRE ATT&CK frameworks. Covers attack methodology, institutional response, and a multi-layered defense framework for higher education. Published as open-access preprint.",
     "downloadLink": "https://doi.org/10.5281/zenodo.19136388"
   }
