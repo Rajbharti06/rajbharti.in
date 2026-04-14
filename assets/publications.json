@@ -1,18 +1,25 @@
 [
   {
+    "title": "Case Study: Why Modern Authentication Is Failing",
+    "authors": "Raj Bharti",
+    "publisher": "Research Preprint (Under Review at IEEE TIFS)",
+    "date": "2026-04-07",
+    "abstract": "This research explores how attackers are systematically bypassing authentication systems through identity-centric techniques such as vishing, adversary-in-the-middle (AiTM), and MFA fatigue attacks. It introduces the Identity Exploitation Model (IEM), a layered probabilistic framework for modeling compound breach likelihood across real-world attack chains. Grounded in empirical analysis and aligned with MITRE ATT&CK and STRIDE methodologies, this work reveals a critical insight: modern security failures are not purely technical — they are human-driven, sequential, and structurally predictable. The model is currently under peer review at IEEE Transactions on Information Forensics and Security (TIFS), one of the leading journals in cybersecurity and digital forensics, reflecting its contribution to probabilistic risk modeling of identity-centric attacks. Note: Publication currently under review. Full paper will be released upon acceptance.",
+    "downloadLink": "#"
+  },
+  {
     "title": "Case Study: Harvard University Data Breach and Identity-Centric Threats in Modern Cybersecurity",
     "authors": "Raj Bharti",
     "publisher": "Zenodo",
-    "date": "2026-03-31",
-    "abstract": "Research analyzing the 2025–2026 Harvard University data breach, focusing on identity-centric attack vectors such as vishing, adversary-in-the-middle (AiTM), and MFA bypass techniques. Introduces the Identity Exploitation Model (IEM) and applies MITRE ATT&CK and STRIDE frameworks to evaluate systemic weaknesses in modern authentication systems. Published as open-access preprint.",
-    "downloadLink": "https://zenodo.org/records/19344102",
-    "note": "Note: This work is part of an ongoing long-term research project on identity-based cyberattacks. These publications are early case studies released to deepen understanding and refine the broader research direction."
+    "date": "2026-03-15",
+    "abstract": "Research analyzing the 2025–2026 Harvard University data breach, focusing on identity-centric attack vectors such as vishing, adversary-in-the-middle (AiTM), and MFA bypass techniques. Introduces the Identity Exploitation Model (IEM) and applies MITRE ATT&CK and STRIDE frameworks to evaluate systemic weaknesses in modern authentication systems. Published as open-access preprint. Note: This work is part of an ongoing long-term research project on identity-based cyberattacks.",
+    "downloadLink": "https://zenodo.org/records/19344102"
   },
   {
     "title": "Case Study: Princeton University Data Breach and Its Cybersecurity Implications in Higher Education",
     "authors": "Raj Bharti",
     "publisher": "Zenodo",
-    "date": "2026-03-20",
+    "date": "2026-03-01",
     "abstract": "Research analyzing the November 2025 Princeton University vishing breach using STRIDE and MITRE ATT&CK frameworks. Covers attack methodology, institutional response, and a multi-layered defense framework for higher education. Published as open-access preprint.",
     "downloadLink": "https://doi.org/10.5281/zenodo.19136388"
   }

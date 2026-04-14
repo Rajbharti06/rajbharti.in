@@ -4,6 +4,7 @@
     "slug": "hello-world",
     "date": "2025-10-06",
     "excerpt": "A short note on why I’m documenting my journey in AI and cybersecurity, plus what to expect in upcoming posts.",
+    "url": "blog/hello-world.html",
     "tags": ["intro", "ai", "cybersecurity"],
     "order": 1
   },

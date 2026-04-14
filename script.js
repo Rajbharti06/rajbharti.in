@@ -20,6 +20,7 @@
 
         const projectPriority = [
           'rajbharti.in',
+          'hireflow-ai',
           'mymitra',
           'intervai',
           'jarviscoder',
@@ -27,6 +28,11 @@
           'apocalypsegpt',
           'appoclypsegpt'
         ];
+
+        const customDescriptions = {
+          'hireflow-ai': 'HireFlow AI ranks resumes against a job description using a three-signal hybrid scoring engine: semantic embeddings, skill overlap analysis, and LLM judgment. Results are ranked, explained in plain English, and exportable — all without leaving your browser. Works fully offline (Zero-Cost Mode) with a local ML model and no API key required.'
+        };
+
         function priorityIndex(repo) {
           const n = normalizeName(repo.name || '');
           const idx = projectPriority.indexOf(n);
@@ -43,7 +49,10 @@
         filtered.forEach(repo => {
           const article = document.createElement('article');
           article.className = 'project';
-          const description = repo.description || 'No description provided.';
+          
+          const repoNameLower = repo.name.toLowerCase();
+          const description = customDescriptions[repoNameLower] || repo.description || 'No description provided.';
+          
           const language = repo.language || 'Misc';
           const techTags = [language, `★ ${repo.stargazers_count || 0}`];
           if (repo.fork) techTags.push('Fork');
@@ -218,19 +227,15 @@
           const date = item.date ? new Date(item.date).toLocaleDateString(undefined, { year: 'numeric', month: 'long' }) : '';
           const abstract = item.abstract || '';
           const downloadLink = item.downloadLink || '#';
-          const note = item.note || '';
 
           card.innerHTML = `
-            <h3 class="publication-title">
-              <a href="${escapeAttr(downloadLink)}" target="_blank" rel="noopener noreferrer">${escapeHtml(title)}</a>
-            </h3>
+            <h3 class="publication-title">${escapeHtml(title)}</h3>
             <p class="publication-meta">
               ${escapeHtml(authors)}${publisher ? ' • ' + escapeHtml(publisher) : ''}${date ? ' • ' + escapeHtml(date) : ''}
             </p>
             <p class="publication-abstract">${escapeHtml(abstract)}</p>
-            ${note ? `<p class="publication-note">${escapeHtml(note)}</p>` : ''}
             <div class="publication-actions">
-              <a href="${escapeAttr(downloadLink)}" class="btn secondary" target="_blank" rel="noopener noreferrer">View on Zenodo</a>
+              ${downloadLink && downloadLink !== '#' ? `<a href="${escapeAttr(downloadLink)}" class="btn secondary" target="_blank" rel="noopener noreferrer">View on Zenodo</a>` : ''}
             </div>
           `;
           frag.appendChild(card);

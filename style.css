@@ -526,19 +526,7 @@ html {
   font-size: 1.05rem;
   color: var(--text-light);
   line-height: 1.6;
-  margin-bottom: 1rem;
-}
-
-.publication-note {
-  font-size: 0.9rem;
-  color: var(--text-lighter);
-  font-style: italic;
   margin-bottom: 1.5rem;
-  opacity: 0.8;
-}
-
-.publication-title a:hover {
-  text-decoration: underline;
 }
 
 .publication-actions {
