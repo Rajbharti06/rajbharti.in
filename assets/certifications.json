@@ -1,8 +1,16 @@
 [
   {
+    "title": "HackerRank Orchestrate 2026 — Certificate of Excellence",
+    "issuer": "HackerRank",
+    "date": "May 2026",
+    "image": "assets/28262240.png",
+    "badges": ["Completion"],
+    "verify_url": "https://www.hackerrank.com/contests/hackerrank-orchestrate-may26/challenges/support-agent/leaderboard?username=aytraj05"
+  },
+  {
     "title": "GitHub Basics Certificate",
     "issuer": "SimpleLearn  | SkillUp ",
-    "date": "12th October, 2025",
+    "date": "October, 2025",
     "image": "assets/github-basics.png",
     "badges": ["Completion", "GitHub Basics"],
     "verify_url": "https://www.linkedin.com/in/raj-bharti-b12ab2336/"
@@ -10,7 +18,7 @@
   {
     "title": "Introduction to Cybersecurity Certificate",
     "issuer": "Cisco Networking Academy",
-    "date": "30 April, 2025",
+    "date": "April, 2025",
     "image": "assets/intro-cybersecurity.png",
     "badges": ["Completion", "Introduction to Cybersecurity"],
     "verify_url": "https://www.linkedin.com/in/raj-bharti-b12ab2336/"
@@ -18,7 +26,7 @@
   {
     "title": "Pre Security Learning Path",
     "issuer": "Try Hack Me",
-    "date": "9th November, 2025",
+    "date": "November, 2025",
     "image": "assets/pre-security.png",
     "badges": ["Completion", "Pre Security"],
     "verify_url": "https://tryhackme.com/c/THM-UKEAJM2IRL"
@@ -26,7 +34,7 @@
   {
     "title": "Introduction to Psychology",
     "issuer": "Yale University",
-    "date": "20 December, 2025",
+    "date": "December, 2025",
     "image": "assets/intro-psychology.png",
     "badges": [],
     "verify_url": ""
@@ -34,7 +42,7 @@
   {
     "title": "Computational Thinking for Problem Solving",
     "issuer": "University of Pennsylvania",
-    "date": "22 December, 2025",
+    "date": "December, 2025",
     "image": "assets/computational-thinking.png",
     "badges": [],
     "verify_url": ""
@@ -42,7 +50,7 @@
   {
     "title": "Data Labeling Job Simulation",
     "issuer": "Forage Academy",
-    "date": "29 December, 2025",
+    "date": "December, 2025",
     "image": "assets/data-labeling-job-simulation.png",
     "badges": [],
     "verify_url": ""
